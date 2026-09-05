@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kenzo Market menyediakan panel private dan layanan admin panel dengan harga terjangkau, kencang, aman, stabil, dan uptime 99,9 persen.">
+  <meta property="og:title" content="Kenzo Market | Panel Private & Admin Panel">
+  <meta property="og:description" content="Daftar harga panel private dan layanan admin panel Kenzo Market.">
+  <meta property="og:image" content="https://i.postimg.cc/3jfJ6Rdx/ef59dc343e09e0a1b49a0e82ef088336.jpg">
+  <meta property="og:type" content="website">
+  <title>Kenzo Market | Panel Private & Admin Panel</title>
+
+  <style>
+    :root {
+      --背景: #07101d;
+      --深色背景: #040912;
+      --卡片背景: rgba(12, 24, 40, .78);
+      --强卡片背景: rgba(15, 29, 48, .94);
+      --柔和背景: rgba(255, 255, 255, .055);
+      --文字: #f7fbff;
+      --次要文字: #aab8c8;
+      --主色: #78aefc;
+      --强调色: #b9d6ff;
+      --边框: rgba(255, 255, 255, .11);
+      --强边框: rgba(120, 174, 252, .34);
+      --阴影: 0 24px 70px rgba(0, 0, 0, .28);
+      --大圆角: 26px;
+      --中圆角: 18px;
+      --小圆角: 13px;
+      --最大宽度: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      min-width: 320px;
+      color: var(--文字);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(4, 9, 18, .82), rgba(4, 9, 18, .94)),
+        url("https://i.postimg.cc/N0515kbM/09834465c8611cfea6b268a2499774df.jpg") center top / cover fixed no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(78, 141, 242, .16), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(185, 214, 255, .09), transparent 28%),
+        linear-gradient(180deg, transparent 0%, rgba(4, 9, 18, .18) 45%, rgba(4, 9, 18, .72) 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .容器 {
+      width: min(calc(100% - 40px), var(--最大宽度));
+      margin-inline: auto;
+    }
+
+    .页头 {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+      transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    }
+
+    .页头.滚动 {
+      background: rgba(4, 9, 18, .76);
+      border-color: var(--边框);
+      backdrop-filter: blur(18px);
+    }
+
+    .导航 {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .品牌 {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .品牌 img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--边框);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, .24);
+    }
+
+    .品牌 span {
+      font-size: 16px;
+    }
+
+    .导航链接 {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .导航链接 a {
+      color: var(--次要文字);
+      font-size: 14px;
+      font-weight: 650;
+      padding: 10px 13px;
+      border-radius: 10px;
+      transition: color .2s ease, background .2s ease;
+    }
+
+    .导航链接 a:hover {
+      color: var(--文字);
+      background: var(--柔和背景);
+    }
+
+    .菜单按钮 {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--边框);
+      border-radius: 12px;
+      background: var(--柔和背景);
+      color: var(--文字);
+      cursor: pointer;
+    }
+
+    .菜单按钮 svg {
+      width: 20px;
+      height: 20px;
+      margin: auto;
+    }
+
+    .首屏 {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 100px;
+      position: relative;
+    }
+
+    .首屏::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 180px;
+      pointer-events: none;
+      background: linear-gradient(transparent, var(--深色背景));
+    }
+
+    .首屏布局 {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 60px;
+      align-items: center;
+    }
+
+    .小标签 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--边框);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .045);
+      color: var(--强调色);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .小圆点 {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--主色);
+      box-shadow: 0 0 16px rgba(120, 174, 252, .8);
+    }
+
+    .首屏 h1 {
+      max-width: 780px;
+      margin-top: 20px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .首屏 h1 span {
+      color: var(--主色);
+    }
+
+    .首屏描述 {
+      max-width: 650px;
+      margin-top: 24px;
+      color: var(--次要文字);
+      font-size: clamp(16px, 2vw, 18px);
+    }
+
+    .首屏按钮组 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .按钮 {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 19px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .按钮:hover {
+      transform: translateY(-2px);
+    }
+
+    .按钮 svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+    }
+
+    .主按钮 {
+      color: #07101d;
+      background: linear-gradient(135deg, #d8e8ff, #78aefc);
+      box-shadow: 0 12px 35px rgba(78, 141, 242, .22);
+    }
+
+    .次按钮 {
+      color: var(--文字);
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--边框);
+      backdrop-filter: blur(12px);
+    }
+
+    .次按钮:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: var(--强边框);
+    }
+
+    .首屏卡片 {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--边框);
+      border-radius: var(--大圆角);
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      box-shadow: var(--阴影);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .首屏卡片::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -100px;
+      top: -100px;
+      border-radius: 50%;
+      background: rgba(120, 174, 252, .15);
+      filter: blur(25px);
+    }
+
+    .主标志 {
+      width: 86px;
+      height: 86px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 15px 45px rgba(0,0,0,.28);
+    }
+
+    .首屏卡片 h2 {
+      margin-top: 22px;
+      font-size: 24px;
+      letter-spacing: -.025em;
+    }
+
+    .首屏卡片 p {
+      margin-top: 8px;
+      color: var(--次要文字);
+      font-size: 14px;
+    }
+
+    .数据网格 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .数据 {
+      padding: 14px;
+      border: 1px solid var(--边框);
+      border-radius: 14px;
+      background: rgba(0,0,0,.13);
+    }
+
+    .数据 strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .数据 span {
+      display: block;
+      margin-top: 2px;
+      color: var(--次要文字);
+      font-size: 12px;
+    }
+
+    .区域 {
+      position: relative;
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--深色背景), #07101d);
+    }
+
+    .区域:nth-of-type(even) {
+      background: #07101d;
+    }
+
+    .区域标题 {
+      max-width: 720px;
+      margin-bottom: 42px;
+    }
+
+    .区域小标题 {
+      color: var(--主色);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .区域标题 h2 {
+      margin-top: 8px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+
+    .区域标题 p {
+      margin-top: 14px;
+      color: var(--次要文字);
+      max-width: 620px;
+    }
+
+    .价格网格 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .价格卡片 {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 245px;
+      padding: 22px;
+      border: 1px solid var(--边框);
+      border-radius: var(--中圆角);
+      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+      box-shadow: 0 14px 45px rgba(0,0,0,.13);
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .价格卡片:hover {
+      transform: translateY(-5px);
+      border-color: var(--强边框);
+      background: linear-gradient(145deg, rgba(120,174,252,.10), rgba(255,255,255,.035));
+    }
+
+    .重点卡片 {
+      border-color: rgba(120, 174, 252, .42);
+      background: linear-gradient(145deg, rgba(120,174,252,.13), rgba(255,255,255,.035));
+    }
+
+    .徽章 {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 4px 9px;
+      border: 1px solid rgba(185,214,255,.25);
+      border-radius: 999px;
+      background: rgba(185,214,255,.10);
+      color: var(--强调色);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .价格卡片 h3 {
+      margin-top: 17px;
+      font-size: 19px;
+      letter-spacing: -.02em;
+    }
+
+    .价格 {
+      margin-top: 9px;
+      color: var(--文字);
+      font-size: 27px;
+      font-weight: 850;
+      letter-spacing: -.035em;
+    }
+
+    .价格说明 {
+      margin-top: 6px;
+      color: var(--次要文字);
+      font-size: 12px;
+    }
+
+    .卡片操作 {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .卡片操作 .按钮 {
+      width: 100%;
+      min-height: 43px;
+      font-size: 13px;
+    }
+
+    .管理员网格 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .管理员卡片 {
+      padding: 28px;
+      border: 1px solid var(--边框);
+      border-radius: var(--大圆角);
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: 0 18px 55px rgba(0,0,0,.15);
+    }
+
+    .管理员顶部 {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .管理员图标,
+    .优势图标 {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--边框);
+      border-radius: 15px;
+      background: rgba(120,174,252,.08);
+      color: var(--主色);
+    }
+
+    .管理员图标 svg,
+    .优势图标 svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .管理员卡片 h3 {
+      margin-top: 26px;
+      font-size: 22px;
+    }
+
+    .管理员卡片 p {
+      margin-top: 7px;
+      color: var(--次要文字);
+      font-size: 14px;
+    }
+
+    .管理员价格 {
+      margin-top: 19px;
+      font-size: 30px;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    .优势网格 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .优势 {
+      padding: 22px;
+      border: 1px solid var(--边框);
+      border-radius: var(--中圆角);
+      background: rgba(255,255,255,.035);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .优势:hover {
+      transform: translateY(-4px);
+      border-color: var(--强边框);
+    }
+
+    .优势 h3 {
+      margin-top: 18px;
+      font-size: 17px;
+    }
+
+    .优势 p {
+      margin-top: 6px;
+      color: var(--次要文字);
+      font-size: 13px;
+    }
+
+    .行动区域 {
+      padding: 100px 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(120,174,252,.18), transparent 48%),
+        linear-gradient(180deg, #07101d, #040912);
+    }
+
+    .行动盒子 {
+      position: relative;
+      padding: clamp(32px, 6vw, 64px);
+      border: 1px solid var(--强边框);
+      border-radius: 30px;
+      text-align: center;
+      background:
+        linear-gradient(145deg, rgba(120,174,252,.12), rgba(255,255,255,.035)),
+        rgba(8, 17, 29, .82);
+      box-shadow: var(--阴影);
+      overflow: hidden;
+    }
+
+    .行动盒子::before,
+    .行动盒子::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(8px);
+    }
+
+    .行动盒子::before {
+      width: 240px;
+      height: 240px;
+      left: -130px;
+      bottom: -150px;
+      background: rgba(120,174,252,.11);
+    }
+
+    .行动盒子::after {
+      width: 190px;
+      height: 190px;
+      right: -100px;
+      top: -120px;
+      background: rgba(185,214,255,.08);
+    }
+
+    .行动盒子 > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .行动盒子 h2 {
+      font-size: clamp(31px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .行动盒子 p {
+      max-width: 650px;
+      margin: 15px auto 0;
+      color: var(--次要文字);
+    }
+
+    .行动标签组 {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .行动标签 {
+      padding: 8px 12px;
+      border: 1px solid var(--边框);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: var(--次要文字);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .行动按钮组 {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .页脚 {
+      border-top: 1px solid var(--边框);
+      background: #040912;
+      padding: 28px 0;
+    }
+
+    .页脚内部 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .页脚品牌 {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .页脚品牌 img {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      border-radius: 9px;
+    }
+
+    .页脚文字 {
+      color: var(--次要文字);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .出现 {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .出现.显示 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .首屏布局 {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .首屏卡片 {
+        max-width: 620px;
+      }
+
+      .价格网格 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .优势网格 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .容器 {
+        width: min(calc(100% - 28px), var(--最大宽度));
+      }
+
+      .导航 {
+        min-height: 70px;
+      }
+
+      .菜单按钮 {
+        display: grid;
+      }
+
+      .导航链接 {
+        position: absolute;
+        top: 78px;
+        left: 14px;
+        right: 14px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        border: 1px solid var(--边框);
+        border-radius: 16px;
+        background: rgba(5, 13, 24, .95);
+        box-shadow: var(--阴影);
+        backdrop-filter: blur(18px);
+      }
+
+      .导航链接.打开 {
+        display: flex;
+      }
+
+      .导航链接 a {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .首屏 {
+        min-height: auto;
+        padding: 125px 0 80px;
+      }
+
+      .首屏 h1 {
+        font-size: clamp(39px, 13vw, 62px);
+      }
+
+      .区域,
+      .行动区域 {
+        padding: 78px 0;
+      }
+
+      .价格网格 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .管理员网格 {
+        grid-template-columns: 1fr;
+      }
+
+      .页脚内部 {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .页脚文字 {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .品牌 span {
+        font-size: 14px;
+      }
+
+      .品牌 img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .首屏按钮组,
+      .行动按钮组 {
+        flex-direction: column;
+      }
+
+      .首屏按钮组 .按钮,
+      .行动按钮组 .按钮 {
+        width: 100%;
+      }
+
+      .价格网格 {
+        grid-template-columns: 1fr;
+      }
+
+      .价格卡片 {
+        min-height: 225px;
+      }
+
+      .优势网格 {
+        grid-template-columns: 1fr;
+      }
+
+      .数据网格 {
+        grid-template-columns: 1fr;
+      }
+
+      .行动盒子 {
+        border-radius: 23px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .出现 {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+<script
+  type="text/javascript"
+  src="https://app.sandbox.midtrans.com/snap/snap.js"
+  data-client-key="Mid-client-3iTXlJCUIEvVZBWz">
+</script>
+
+</head>
+
+<body>
+  <header class="页头" id="导航">
+    <div class="容器 导航">
+      <a class="品牌" href="#beranda" aria-label="Kenzo Market">
+        <img src="https://i.postimg.cc/3jfJ6Rdx/ef59dc343e09e0a1b49a0e82ef088336.jpg" alt="Logo Kenzo Market">
+        <span>kenzo market</span>
+      </a>
+
+      <button class="菜单按钮" id="菜单按钮" type="button" aria-label="Buka menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+
+      <nav class="导航链接" id="菜单导航" aria-label="Navigasi utama">
+        <a href="#harga">Harga Panel</a>
+        <a href="#admin">Admin Panel</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="首屏" id="beranda">
+      <div class="容器 首屏布局">
+        <div class="出现">
+          <div class="小标签">
+            <span class="小圆点"></span>
+            layanan panel digital
+          </div>
+
+          <h1>panel private yang <span>kencang</span> dan stabil</h1>
+
+          <p class="首屏描述">
+            Kenzo Market menyediakan pilihan panel private dan layanan admin panel dengan harga yang mudah dipahami.
+            Fokus pada kualitas, kestabilan, dan layanan yang sesuai kebutuhan.
+          </p>
+
+          <div class="首屏按钮组">
+            <a class="按钮 主按钮" href="#harga">
+              lihat daftar harga
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+
+            <a class="按钮 次按钮 tombolKontak" href="#kontak">
+              hubungi kenzo market
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.7 9.7 0 0 1-4.1-.9L3 21l1.9-4.5A8.4 8.4 0 0 1 3 11.5 8.6 8.6 0 0 1 12 3a8.6 8.6 0 0 1 9 8.5Z"></path>
+                <path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <aside class="首屏卡片 出现">
+          <img class="主标志" src="https://i.postimg.cc/3jfJ6Rdx/ef59dc343e09e0a1b49a0e82ef088336.jpg" alt="Logo Kenzo Market">
+          <h2>kenzo market</h2>
+          <p>panel private dan layanan admin panel</p>
+
+          <div class="数据网格">
+            <div class="数据"><strong>99,9%</strong><span>uptime</span></div>
+            <div class="数据"><strong>kencang</strong><span>performa</span></div>
+            <div class="数据"><strong>aman</strong><span>layanan</span></div>
+            <div class="数据"><strong>stabil</strong><span>operasional</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="区域" id="harga">
+      <div class="容器">
+        <div class="区域标题 出现">
+          <div class="区域小标题">daftar harga</div>
+          <h2>list harga panel private</h2>
+          <p>Pilih ukuran panel sesuai kebutuhan dengan harga yang jelas dan mudah dipahami.</p>
+        </div>
+
+        <div class="价格网格">
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>1GB</h3><div class="价格">Rp 3.000</div><p class="价格说明">panel private 1GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 1GB - Rp 3.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>2GB</h3><div class="价格">Rp 5.000</div><p class="价格说明">panel private 2GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 2GB - Rp 5.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>3GB</h3><div class="价格">Rp 7.000</div><p class="价格说明">panel private 3GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 3GB - Rp 7.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>4GB</h3><div class="价格">Rp 8.000</div><p class="价格说明">panel private 4GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 4GB - Rp 8.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>5GB</h3><div class="价格">Rp 9.000</div><p class="价格说明">panel private 5GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 5GB - Rp 9.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>6GB</h3><div class="价格">Rp 10.000</div><p class="价格说明">panel private 6GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 6GB - Rp 10.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>10GB</h3><div class="价格">Rp 15.000</div><p class="价格说明">panel private 10GB</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Private 10GB - Rp 15.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 重点卡片 出现">
+            <span class="徽章">diskon</span><h3>bot plus panel unlimited permanen</h3><div class="价格">Rp 30.000</div><p class="价格说明">paket bot plus panel unlimited permanen</p>
+            <div class="卡片操作"><a class="按钮 主按钮 tombolBeli" href="#kontak" data-produk="Bot Plus Panel Unlimited Permanen - Rp 30.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 出现">
+            <span class="徽章">panel private</span><h3>unlimited</h3><div class="价格">Rp 15.000</div><p class="价格说明">panel unlimited</p>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Panel Unlimited - Rp 15.000">pilih paket</a></div>
+          </article>
+
+          <article class="价格卡片 重点卡片 出现">
+            <span class="徽章">selamanya</span><h3>unlimited selamanya</h3><div class="价格">Rp 30.000</div><p class="价格说明">panel unlimited selamanya</p>
+            <div class="卡片操作"><a class="按钮 主按钮 tombolBeli" href="#kontak" data-produk="Panel Unlimited Selamanya - Rp 30.000">pilih paket</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="区域" id="admin">
+      <div class="容器">
+        <div class="区域标题 出现">
+          <div class="区域小标题">layanan admin panel</div>
+          <h2>admin panel sesuai kebutuhan</h2>
+          <p>Pilih masa aktif sesuai kebutuhan layanan admin panel.</p>
+        </div>
+
+        <div class="管理员网格">
+          <article class="管理员卡片 出现">
+            <div class="管理员顶部">
+              <div class="管理员图标">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M8 9h8M8 13h5"></path>
+                </svg>
+              </div>
+              <span class="徽章">2 bulan</span>
+            </div>
+            <h3>admin panel 2 bulan</h3>
+            <p>Masa aktif 2 bulan untuk kebutuhan admin panel.</p>
+            <div class="管理员价格">Rp 20.000</div>
+            <div class="卡片操作"><a class="按钮 次按钮 tombolBeli" href="#kontak" data-produk="Admin Panel 2 Bulan - Rp 20.000">pilih layanan</a></div>
+          </article>
+
+          <article class="管理员卡片 出现">
+            <div class="管理员顶部">
+              <div class="管理员图标">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3 5 6v5c0 4.6 2.9 8.5 7 10 4.1-1.5 7-5.4 7-10V6l-7-3Z"></path><path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <span class="徽章">permanen</span>
+            </div>
+            <h3>admin panel permanen</h3>
+            <p>Masa aktif permanen atau selamanya sesuai paket.</p>
+            <div class="管理员价格">Rp 25.000</div>
+            <div class="卡片操作"><a class="按钮 主按钮 tombolBeli" href="#kontak" data-produk="Admin Panel Permanen - Rp 25.000">pilih layanan</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="区域" id="keunggulan">
+      <div class="容器">
+        <div class="区域标题 出现">
+          <div class="区域小标题">keunggulan</div>
+          <h2>dibuat untuk kebutuhan yang stabil</h2>
+          <p>Fokus pada performa dan kestabilan layanan untuk kebutuhan digital.</p>
+        </div>
+
+        <div class="优势网格">
+          <article class="优势 出现">
+            <div class="优势图标">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path>
+              </svg>
+            </div>
+            <h3>uptime 99,9 persen</h3>
+            <p>Menjaga layanan tetap tersedia dan dapat diandalkan.</p>
+          </article>
+
+          <article class="优势 出现">
+            <div class="优势图标">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"></path>
+              </svg>
+            </div>
+            <h3>kencang</h3>
+            <p>Performa cepat untuk penggunaan yang lebih nyaman.</p>
+          </article>
+
+          <article class="优势 出现">
+            <div class="优势图标">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 5 6v5c0 4.6 2.9 8.5 7 10 4.1-1.5 7-5.4 7-10V6l-7-3Z"></path><path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3>aman</h3>
+            <p>Dirancang dengan perhatian pada keamanan layanan.</p>
+          </article>
+
+          <article class="优势 出现">
+            <div class="优势图标">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12a8 8 0 0 1 15.5-2.7"></path><path d="M20 5v5h-5"></path><path d="M20 12a8 8 0 0 1-15.5 2.7"></path><path d="M4 19v-5h5"></path>
+              </svg>
+            </div>
+            <h3>stabil</h3>
+            <p>Pengalaman layanan yang konsisten untuk kebutuhan harian.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="行动区域" id="kontak">
+      <div class="容器">
+        <div class="行动盒子 出现">
+          <div class="区域小标题">kenzo market</div>
+          <h2>ingat kawan ada harga ada kualitas</h2>
+          <p>Bisa tawar jika budget kurang. Pilih paket yang sesuai kebutuhan lalu hubungi Kenzo Market untuk melanjutkan pemesanan.</p>
+
+          <div class="行动标签组">
+            <span class="行动标签">uptime 99,9 persen</span>
+            <span class="行动标签">kencang</span>
+            <span class="行动标签">aman</span>
+            <span class="行动标签">stabil</span>
+            <span class="行动标签">bisa tawar jika budget kurang</span>
+          </div>
+
+          <div class="行动按钮组">
+            <a class="按钮 主按钮 tombolKontak" href="#kontak">
+              hubungi kenzo market
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.7 9.7 0 0 1-4.1-.9L3 21l1.9-4.5A8.4 8.4 0 0 1 3 11.5 8.6 8.6 0 0 1 12 3a8.6 8.6 0 0 1 9 8.5Z"></path>
+                <path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01"></path>
+              </svg>
+            </a>
+            <a class="按钮 次按钮" href="#harga">
+              kembali ke harga
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="页脚">
+    <div class="容器 页脚内部">
+      <a class="页脚品牌" href="#beranda">
+        <img src="https://i.postimg.cc/3jfJ6Rdx/ef59dc343e09e0a1b49a0e82ef088336.jpg" alt="Logo Kenzo Market">
+        <span>kenzo market</span>
+      </a>
+      <div class="页脚文字">© 2026 Kenzo Market · panel private dan admin panel</div>
+    </div>
+  </footer>
+
+  <script>
+    // 联系地址只需修改这里
+    const 联系地址 = "#kontak";
+
+    // 初始化移动导航
+    const 菜单按钮 = document.getElementById("菜单按钮");
+    const 菜单导航 = document.getElementById("菜单导航");
+    const 页面头部 = document.querySelector(".页头");
+
+    菜单按钮.addEventListener("click", () => {
+      const 是否打开 = 菜单导航.classList.toggle("打开");
+      菜单按钮.setAttribute("aria-expanded", String(是否打开));
+    });
+
+    菜单导航.querySelectorAll("a").forEach((链接) => {
+      链接.addEventListener("click", () => {
+        菜单导航.classList.remove("打开");
+        菜单按钮.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // 滚动时改变导航背景
+    const 检查滚动 = () => {
+      页面头部.classList.toggle("滚动", window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", 检查滚动, { passive: true });
+    检查滚动();
+
+    // 设置联系按钮
+    document.querySelectorAll(".tombolKontak").forEach((按钮) => {
+      按钮.setAttribute("href", 联系地址);
+    });
+
+    // Pembayaran Midtrans melalui Vercel Function
+    document.querySelectorAll(".tombolBeli").forEach((按钮) => {
+      按钮.addEventListener("click", async (事件) => {
+        if (联系地址 !== "#kontak") return;
+
+        事件.preventDefault();
+
+        const produk = 按钮.dataset.produk || "layanan Kenzo Market";
+        const hargaMatch = produk.match(/Rp\\s*([0-9.]+)/i);
+        const harga = hargaMatch
+          ? Number(hargaMatch[1].replace(/\\./g, ""))
+          : 0;
+
+        if (!harga) {
+          alert("Harga produk tidak ditemukan");
+          return;
+        }
+
+        const nama = prompt("Masukkan nama Anda");
+        if (!nama) return;
+
+        const email = prompt("Masukkan email Anda");
+        if (!email) return;
+
+        const whatsapp = prompt("Masukkan nomor WhatsApp Anda");
+        if (!whatsapp) return;
+
+        const tombolAsli = 按钮;
+        const teksAsli = tombolAsli.textContent;
+        tombolAsli.textContent = "memproses...";
+        tombolAsli.style.pointerEvents = "none";
+
+        try {
+          const respons = await fetch("/api/create-transaction", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              product: produk,
+              gross_amount: harga,
+              name: nama,
+              email: email,
+              whatsapp: whatsapp
+            })
+          });
+
+          const data = await respons.json();
+
+          if (!respons.ok || !data.token) {
+            throw new Error(data.error || "Gagal membuat transaksi");
+          }
+
+          window.snap.pay(data.token, {
+            onSuccess: function () {
+              alert("Pembayaran berhasil diproses");
+            },
+            onPending: function () {
+              alert("Pembayaran menunggu penyelesaian");
+            },
+            onError: function () {
+              alert("Pembayaran gagal");
+            },
+            onClose: function () {
+              console.log("Jendela pembayaran ditutup");
+            }
+          });
+        } catch (error) {
+          alert(error.message || "Terjadi kesalahan");
+        } finally {
+          tombolAsli.textContent = teksAsli;
+          tombolAsli.style.pointerEvents = "";
+        }
+      });
+    });
+
+    // 初始化滚动显示动画
+    const 显示项目 = document.querySelectorAll(".出现");
+
+    if ("IntersectionObserver" in window) {
+      const 观察器 = new IntersectionObserver((项目列表, 当前观察器) => {
+        项目列表.forEach((项目) => {
+          if (项目.isIntersecting) {
+            项目.target.classList.add("显示");
+            当前观察器.unobserve(项目.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px"
+      });
+
+      显示项目.forEach((项目) => 观察器.observe(项目));
+    } else {
+      显示项目.forEach((项目) => 项目.classList.add("显示"));
+    }
+  </script>
+</body>
+</html>
